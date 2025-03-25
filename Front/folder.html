@@ -283,7 +283,6 @@
           })
           .then(response => response.text())
           .then(text => {
-            document.getElementById('responseMessage').innerText = text;
             loadFiles();  // Dateien nach Upload neu laden
           })
           .catch(error => console.error('Fehler beim Hochladen:', error));

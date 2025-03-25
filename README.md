@@ -2,6 +2,8 @@
 
 A self-developed local database for storing data in a file-based structure.
 
+![Alt-Text](Pics/localDatabase.png)
+
 ## Technologies Used
 
 Backend: C++ with SQLite for database interaction
@@ -14,6 +16,10 @@ Frontend: HTML, CSS, and JavaScript for the user interface
 - Stores data in a structured file format
 - No external database dependencies
 - Local access for fast performance
+
+![Alt-Text](Pics/list.png)
+
+- You can save, rename, sort, and delete files, as well as create new folders in the database. Please note that deleting a folder will also delete all files and subfolders contained within it
 
 ## Directory Structure
 
