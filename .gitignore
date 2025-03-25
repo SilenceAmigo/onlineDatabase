@@ -1,0 +1,5 @@
+# VS Code Ordner ignorieren
+.vscode/
+
+# infoApi Datei ignorieren
+Api-Back/infoApi

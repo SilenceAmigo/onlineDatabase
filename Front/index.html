@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Seite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 50px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .kachel {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 200px;
+            height: 200px;
+            background-color: #1a4d9b;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            user-select: none;
+        }
+
+        .kachel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* SVG-Stil */
+        .kachel svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            fill: white;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="header">Local Database</h1>
+
+    <div class="container" id="container">
+        <div class="button-container">
+            <!-- Kachel mit Button zur Upload-Seite -->
+            <div class="kachel" onclick="showAndRedirect()">
+                <!-- Datenbanksymbol -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 1.79 0 4v8c0 2.21 3.58 4 8 4s8-1.79 8-4V4c0-2.21-3.58-4-8-4zm0 1c4.03 0 7 1.61 7 3s-2.97 3-7 3-7-1.61-7-3 2.97-3 7-3zm0 14c-4.03 0-7-1.61-7-3v-.66C2.7 11.35 4.53 12 8 12s5.3-.65 7-1.66V12c0 1.39-2.97 3-7 3zm0-4c-3.47 0-5.3-.65-7-1.66V8c1.7 1.01 3.53 1.66 7 1.66s5.3-.65 7-1.66v1.34c-1.7 1.01-3.53 1.66-7 1.66z"/>
+                </svg>
+                Datei hochladen
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAndRedirect() {
+            window.location.href = 'uploadfiles.html';
+        }
+    </script>
+
+</body>
+</html>
