@@ -277,7 +277,7 @@
           const renamedFile = new File([file], renamedFileName, { type: file.type });
           formData.append('file', renamedFile);
           // Datei in den aktuellen Ordner hochladen
-          fetch(`http://localhost:8080/upload-file/${folderId}`, {
+          fetch(`http://192.168.178.91:8080/upload-file/${folderId}`, {
             method: 'POST',
             body: formData
           })
@@ -310,13 +310,12 @@
     document.getElementById('confirmCreateFolder').addEventListener('click', () => {
       const folderName = document.getElementById('folderName').value.trim();
       if (folderName) {
-        fetch(`http://localhost:8080/upload-folder/${folderId}`, {
+        fetch(`http://192.168.178.91:8080/upload-folder/${folderId}`, {
           method: 'POST',
           body: folderName
         })
         .then(response => response.text())
         .then(text => {
-          document.getElementById('responseMessage').innerText = text;
           loadFiles();  // Dateien nach Ordner-Erstellung neu laden
         })
         .catch(error => console.error('Fehler beim Erstellen des Ordners:', error));
@@ -345,7 +344,7 @@
     
     // Dateien des aktuellen Ordners laden und sortieren
     function loadFiles() {
-      fetch(`http://localhost:8080/files/${folderId}`)
+      fetch(`http://192.168.178.91:8080/files/${folderId}`)
         .then(response => {
           if (!response.ok) {
             throw new Error(`HTTP-Fehler: ${response.status}`);
@@ -410,42 +409,47 @@
             deleteButton.classList.add('delete');
             deleteButton.onclick = () => {
               if (confirm(`Do you really want to delete the ${type} “${name}”?`)) {
-                fetch(`http://localhost:8080/delete-${type}`, {
+                fetch(`http://192.168.178.91:8080/delete-${type}`, {
                   method: 'POST',
                   body: file.id
                 })
                 .then(response => {
-                  if (!response.ok) throw new Error('Fehler beim Löschen');
+                  if (!response.ok) throw new Error('F{ehler beim Löschen');
                   return response.text();
                 })
-                .then(() => loadFiles())
+                .then(() => {
+                  loadFiles() 
+                  })
                 .catch(error => console.error('Fehler:', error));
               }
             };
             tdActions.appendChild(deleteButton);
-  
+            if (file.type == "file"){
             // Download-Button
             const downloadButton = document.createElement('button');
             downloadButton.textContent = 'Download';
             downloadButton.classList.add('download');
             downloadButton.onclick = () => {
-              fetch(`http://localhost:8080/download/${id}`)
+              fetch(`http://192.168.178.91:8080/download/${id}`)
                 .then(response => response.blob())
                 .then(blob => {
                   const link = document.createElement('a');
                   link.href = URL.createObjectURL(blob);
                   link.download = name;
                   link.click();
+                  
                 })
                 .catch(error => console.error('Fehler beim Herunterladen:', error));
             };
             tdActions.appendChild(downloadButton);
+          }
   
             tr.appendChild(tdActions);
             fileList.appendChild(tr);
           });
         })
-        .catch(error => console.error('Fehler beim Laden der Dateien:', error));
+        .catch(
+          error => fileList.innerHTML = '');
     }
     
     // Beim Laden der Seite
